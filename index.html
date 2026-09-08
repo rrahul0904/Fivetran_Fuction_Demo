@@ -23,84 +23,63 @@
 @media(max-width:900px) and (max-height:500px) and (orientation:landscape){.masthead{height:50px}.story{left:18px;bottom:auto;top:50%;transform:translateY(-45%);width:38vw}.story-index{margin-bottom:8px}.story-age{font-size:7px;margin-bottom:5px}.story h1{font-size:clamp(28px,5vw,42px)}.story-summary{font-size:11px;line-height:1.35;margin-top:9px;-webkit-line-clamp:2}.time-machine{height:78px;padding:0 18px 10px}.era-track{display:none}.timeline-meta{margin-top:0}.timeline-track{height:28px}.earth-shade{background:linear-gradient(90deg,rgba(0,0,0,.80),rgba(0,0,0,.35) 39%,transparent 62%)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.space{animation:none}}
 .map-credit{position:absolute;z-index:10;right:38px;bottom:8px;color:rgba(255,255,255,.18);font-size:5px;letter-spacing:.14em;text-decoration:none}.map-credit:hover{color:rgba(255,255,255,.55)}@media(max-width:620px){.map-credit{right:16px;bottom:5px;font-size:4px}}
+
+/* v12 reference shell */
+:root{--ink:#eef4ef;--muted:#819099;--micro:#7690a0;--panel:#07131d;--hair:rgba(158,184,197,.20);--accent:#d8e6dc;--mint:#cfe0d5}
+html,body{background:#02070a;color:var(--ink)}
+body[data-build="v12-reference-shell"]{background:radial-gradient(circle at 55% 36%,rgba(16,37,46,.18),transparent 40%),#02070a}
+.reference-shell{position:relative;width:100%;height:100%;min-height:100dvh;overflow:hidden;background:linear-gradient(180deg,#02070a 0%,#030a0e 100%);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+.reference-shell:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.54;background-image:radial-gradient(circle at 8% 14%,rgba(255,255,255,.32) 0 1px,transparent 1.5px),radial-gradient(circle at 81% 17%,rgba(255,255,255,.22) 0 1px,transparent 1.5px),radial-gradient(circle at 33% 71%,rgba(255,255,255,.18) 0 1px,transparent 1.5px),radial-gradient(circle at 92% 63%,rgba(255,255,255,.20) 0 1px,transparent 1.5px);background-size:223px 191px,271px 233px,311px 281px,347px 307px}
+#earth-stage{position:absolute;inset:0;z-index:1;overflow:hidden}
+#earth-globe{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+#app[data-dragging="true"] #earth-globe{cursor:grabbing}
+.earth-shade{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 67% 44%,transparent 0 23%,rgba(1,6,9,.04) 43%,rgba(1,6,9,.38) 73%,rgba(1,6,9,.72) 100%)}
+.earth-loading{position:absolute;z-index:30;inset:0;display:grid;place-items:center;background:#02070a;transition:opacity .7s ease,visibility .7s ease}.earth-loading.is-done{opacity:0;visibility:hidden}.earth-loading .load-inner{display:grid;gap:12px;width:210px;text-align:center}.earth-loading span{font-size:9px;letter-spacing:.28em;color:#a9bdc5}.earth-loading i{height:1px;background:#19303a}.earth-loading b{display:block;height:100%;width:0;background:#dceae1;transition:width .3s ease}
+.webgl-fallback{position:absolute;z-index:20;inset:0;display:grid;place-items:center;background:#02070a;text-align:center}.webgl-fallback p{font-size:11px;letter-spacing:.2em}.webgl-fallback span{font-size:12px;color:#7f919b}
+.topbar{position:absolute;z-index:8;left:4.55vw;right:4.55vw;top:0;height:76px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid var(--hair)}
+.brand{font-size:31px;font-weight:500;letter-spacing:-.075em;background:none;border:0;padding:0;color:#f2f5f1;justify-self:start;cursor:pointer}.brand span{letter-spacing:-.03em}
+.site-nav{display:flex;align-items:center;gap:34px;font-size:11px;color:#8fa0aa}.site-nav a{color:inherit;text-decoration:none;position:relative;padding:30px 0}.site-nav a.active{color:#eef4ef}.site-nav a.active:after{content:"";position:absolute;left:50%;bottom:18px;width:3px;height:3px;border-radius:50%;background:#dbeadf}
+.sources{justify-self:end;font-size:9px;letter-spacing:.04em;color:#95a4ad;text-decoration:none}.sources b{font-size:15px;font-weight:300;margin-left:7px}
+.kicker-line{position:absolute;z-index:7;top:101px;left:4.55vw;font-size:7px;letter-spacing:.38em;color:#7894a2;text-transform:uppercase}.kicker-line:before{content:"";display:inline-block;width:4px;height:4px;background:#9adac8;border-radius:50%;margin-right:12px;vertical-align:middle}
+.hero{position:absolute;z-index:7;left:8.05vw;top:219px;width:390px}.eyebrow{font-size:8px;letter-spacing:.31em;color:#a2bbb8;text-transform:uppercase;margin:0 0 28px}.hero h1{font-size:64px;line-height:1.01;letter-spacing:-.06em;font-weight:300;margin:0 0 24px;max-width:360px}.hero p{font-size:13px;line-height:1.8;color:#96a3aa;max-width:350px;margin:0}.hero-actions-label{margin-top:38px;font-size:7px;letter-spacing:.26em;color:#80929a}.hero-actions{display:flex;align-items:center;margin-top:12px;gap:28px}.primary-cta{width:174px;height:54px;border:0;background:#dce7df;color:#0a1317;font-size:12px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;cursor:pointer}.secondary-cta{background:none;border:0;color:#92a3aa;font-size:10px;padding:18px 0;cursor:pointer}.secondary-cta b{font-size:14px;font-weight:300;margin-left:8px}
+.age-panel{position:absolute;z-index:7;right:5.6vw;top:151px;width:150px;text-align:center}.age-panel .kind{font-size:7px;letter-spacing:.25em;color:#78919e}.age-panel .number{font-size:58px;line-height:1;font-weight:300;letter-spacing:-.05em;margin-top:19px}.age-panel .unit{margin-top:14px;font-size:7px;letter-spacing:.22em;color:#8ea0a9}.age-panel .return{margin-top:22px;padding-top:14px;border-top:1px solid var(--hair);font-size:9px;color:#a0afb7;background:none;border-left:0;border-right:0;border-bottom:0;width:100%;cursor:pointer}.age-panel .compare{margin-top:22px;font-size:9px;color:#9aabb3}.age-panel .compare:before{content:"◎";margin-right:7px}
+.zoom-stack{position:absolute;z-index:7;right:4.55vw;top:53%;width:38px;border:1px solid var(--hair);border-radius:3px;overflow:hidden}.zoom-stack button{width:100%;height:38px;background:rgba(2,8,11,.55);border:0;border-bottom:1px solid var(--hair);color:#7f929c;font-size:18px;cursor:pointer}.zoom-stack button:last-child{border-bottom:0}
+.story-play{position:absolute;z-index:7;right:8.05vw;bottom:205px;display:flex;gap:16px;align-items:center}.story-play button{height:42px;border-radius:24px;border:1px solid rgba(180,207,197,.38);background:rgba(8,23,29,.42);color:#dbe5df;padding:0 24px;font-size:10px;cursor:pointer}.story-play .speed{width:38px;padding:0;border-radius:2px}.story-play .play:before{content:"▶";margin-right:12px;font-size:10px}
+.timeline-block{position:absolute;z-index:8;left:8.05vw;right:8.05vw;bottom:113px}.timeline-title{font-size:9px;letter-spacing:.22em;color:#9eb3ba}.timeline-help{font-size:9px;color:#8c9aa2;margin-top:12px;display:flex;gap:18px}.timeline-help span+span:before{content:"";display:inline-block;width:1px;height:15px;background:var(--hair);margin-right:18px;vertical-align:middle}.range-wrap{position:relative;height:72px;margin-top:16px}.history-range{position:absolute;left:0;right:0;top:0;width:100%;height:25px;opacity:0;cursor:pointer;z-index:5}.track{position:absolute;left:0;right:0;top:10px;height:1px;background:rgba(184,204,209,.55)}.era-stops{position:absolute;left:0;right:0;top:0;display:grid;grid-template-columns:repeat(10,1fr)}.era-stop{position:relative;background:none;border:0;color:#6f8792;padding:30px 4px 0;text-align:left;cursor:pointer}.era-stop:before{content:"";position:absolute;top:7px;left:0;width:6px;height:6px;border-radius:50%;background:#496d7c;transform:translate(-50%,-50%)}.era-stop.active{color:#d7e2dd}.era-stop.active:before{width:12px;height:12px;background:#dceae1;box-shadow:0 0 0 6px rgba(215,234,225,.08),0 0 18px rgba(214,237,228,.55)}.era-stop strong{display:block;font-size:9px;font-weight:400;margin-bottom:9px}.era-stop small{font-size:6px;color:#5d727d;white-space:nowrap}.timeline-meta{display:flex;justify-content:space-between;font-size:6px;letter-spacing:.12em;color:#526872;margin-top:2px}.timeline-meta .key{display:flex;gap:20px}.timeline-meta .key b{font-weight:400}.timeline-meta .key i{display:inline-block;width:27px;height:1px;background:#445963;margin:0 8px 2px}
+.bottom-rail{position:absolute;z-index:8;left:4.55vw;right:4.55vw;bottom:0;height:90px;border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.orbit-copy{font-size:7px;letter-spacing:.22em;color:#728b96}.orbit-copy strong{display:block;font-weight:400;color:#9aadb5;margin-bottom:10px}.view-modes{display:flex;border:1px solid var(--hair);border-radius:4px;padding:4px}.view-modes button{height:30px;border:0;background:none;color:#6f8792;font-size:7px;padding:0 17px;cursor:pointer;border-radius:2px}.view-modes button.active{background:#1b2b2e;color:#d9e5df}.view-modes button span{font-size:12px;margin-right:8px}.footer-tools{justify-self:end;display:flex;gap:22px;align-items:center;color:#607883;font-size:15px}.footer-tools button{background:none;border:0;color:inherit;cursor:pointer}.footer-tag{position:absolute;bottom:11px;left:4.55vw;font-size:5px;letter-spacing:.24em;color:#455d68}.data-link{position:absolute;bottom:11px;right:4.55vw;font-size:5px;letter-spacing:.18em;color:#526d79;text-decoration:none}
+.mobile-header,.mobile-panel,.mobile-nav{display:none}
+body[data-lighting="after-dark"] #earth-stage{filter:brightness(.42) saturate(.75) contrast(1.12)}body[data-lighting="blue-hour"] #earth-stage{filter:brightness(.72) saturate(.86) hue-rotate(12deg)}
+@media(max-width:700px){
+ .reference-shell{overflow:hidden}.topbar,.kicker-line,.hero,.age-panel,.zoom-stack,.story-play,.timeline-block,.bottom-rail,.footer-tag,.data-link{display:none}
+ .mobile-header{display:flex;position:absolute;z-index:12;left:20px;right:20px;top:0;height:82px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--hair)}.mobile-header .brand{font-size:28px}.mobile-header button{height:42px;border:1px solid rgba(173,193,200,.35);border-radius:23px;background:rgba(7,14,18,.62);color:#e2e8e4;padding:0 16px;font-size:12px}.mobile-header i{display:inline-block;width:15px;height:10px;margin-left:12px;border-top:1px solid currentColor;border-bottom:1px solid currentColor}
+ #earth-stage{bottom:248px}.earth-shade{background:radial-gradient(circle at 50% 36%,transparent 0 24%,rgba(1,6,9,.02) 46%,rgba(1,6,9,.45) 100%)}
+ .mobile-panel{display:block;position:absolute;z-index:11;left:0;right:0;bottom:0;height:272px;padding:26px 20px 18px;background:linear-gradient(180deg,#081720 0%,#07141d 100%);border:1px solid rgba(138,169,181,.26);border-bottom:0;border-radius:24px 24px 0 0;transition:height .45s cubic-bezier(.22,.8,.22,1);overflow:auto}.mobile-panel.expanded{height:calc(100dvh - 82px);border-radius:0;padding-top:28px}.mobile-panel .panel-top{display:flex;justify-content:space-between;font-size:12px;color:#aebcc3}.mobile-panel .mobile-kicker{margin-top:23px;font-size:7px;letter-spacing:.24em;color:#7f98a4}.mobile-panel h1{font-size:30px;line-height:1.06;letter-spacing:-.055em;font-weight:300;margin:17px 0 0;max-width:250px}.mobile-panel .mobile-copy{display:none;font-size:13px;line-height:1.6;color:#95a4ab;margin-top:15px}.mobile-actions{display:grid;grid-template-columns:1.15fr 1.15fr 48px;gap:8px;margin-top:24px}.mobile-actions button{height:57px;border:1px solid rgba(167,191,198,.32);background:#11242c;color:#e4e9e6;border-radius:15px;font-size:13px}.mobile-actions button:first-child:after{content:"←";margin-left:18px}.mobile-toggle{display:block;width:100%;border:0;background:none;color:#c2ccd0;margin-top:19px;font-size:14px}.mobile-toggle:after{content:" ↑"}.mobile-panel.expanded .mobile-toggle:after{content:" ↓"}.mobile-panel.expanded .mobile-copy,.mobile-panel.expanded .mobile-details{display:block}.mobile-details{display:none;margin-top:30px}.mobile-details .detail-section{padding:22px 0;border-top:1px solid var(--hair)}.mobile-details h3{font-size:9px;letter-spacing:.22em;font-weight:400;color:#9db1ba}.mobile-details p{font-size:12px;color:#81939d;line-height:1.6}.mobile-details .mobile-stop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 20px;margin-top:16px}.mobile-details .mobile-stop-grid button{background:none;border:0;color:#8fa2ab;text-align:left;padding:0}.mobile-details .mobile-stop-grid strong{display:block;font-size:12px}.mobile-details .mobile-stop-grid small{font-size:8px;color:#607986}
+ .mobile-nav{position:absolute;z-index:20;inset:82px 0 0;background:rgba(3,10,14,.985);padding:28px 22px 40px;overflow:auto}.mobile-nav.open{display:block}.mobile-nav a{display:flex;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--hair);font-size:26px;letter-spacing:-.04em;color:#e9efeb;text-decoration:none}.mobile-nav .sources-mobile{font-size:13px;color:#8297a0;margin-top:30px;display:block}
+}
 </style>
 <meta name="earth-build" content="v11-git-static"></head>
-<body data-build="v11-git-static">
-  <main class="experience" id="app" data-state="loading">
-    <a class="skip-link" href="#story">Skip to story</a>
-
-    <div class="space" aria-hidden="true"></div>
-    <div class="earth-stage" id="earth-stage" aria-hidden="true">
-      <canvas id="earth-globe"></canvas>
-      <div class="earth-shade"></div>
-      <div class="earth-loading" id="earth-loading" aria-live="polite">
-        <span id="loading-label">FORMING EARTH</span>
-        <i><b id="loading-bar"></b></i>
-      </div>
-      <div class="webgl-fallback" id="webgl-fallback" hidden>
-        <div class="fallback-orb"></div>
-        <p>3D RENDERER UNAVAILABLE</p>
-        <span id="fallback-message">This browser could not start the WebGL renderer.</span>
-      </div>
-    </div>
-
-    <header class="masthead">
-      <button class="wordmark" id="brand-button" type="button" aria-label="Return to the beginning">
-        <span class="planet-dot"></span><strong>EARTH</strong>
-      </button>
-      <div class="masthead-center" id="masthead-era">HADEAN</div>
-      <div class="masthead-actions">
-        <button id="now-button" class="quiet-button" type="button">NOW</button>
-        <button id="play-button" class="play-button" type="button" aria-label="Play Earth history"><span id="play-icon">▶</span></button>
-      </div>
-    </header>
-
-    <section class="story" id="story" aria-live="polite" aria-atomic="true">
-      <div class="story-index"><span id="story-count">01</span><i></i><span id="story-total">46</span></div>
-      <p class="story-age" id="story-time">4.54 BILLION YEARS AGO</p>
-      <h1 id="story-title">Earth forms</h1>
-      <p class="story-summary" id="story-summary">Dust and rock in the young Solar System accrete into a hot, differentiated planet.</p>
-      <div class="story-foot">
-        <span id="story-era-subtitle">A world assembled from fire</span>
-        <span id="story-confidence">HIGH CONFIDENCE</span>
-      </div>
-    </section>
-
-    <aside class="interaction-hint" aria-hidden="true">
-      <span>DRAG</span><i></i><span>ROTATE EARTH</span><b>·</b><span>SCROLL</span><i></i><span>ZOOM</span>
-    </aside>
-
-    <div class="human-phase" id="human-phase" hidden aria-hidden="true">
-      <span class="pulse"></span><strong>HUMAN DISPERSAL</strong><span>routes illuminate as people spread across the planet</span>
-    </div>
-
-    <footer class="time-machine">
-      <div class="time-controls">
-        <button id="prev-button" class="travel travel-back" type="button" aria-label="Earlier chapter">← <span>BACK IN TIME</span></button>
-        <button id="next-button" class="travel travel-forward" type="button" aria-label="Later chapter"><span>FORWARD</span> →</button>
-      </div>
-
-      <div class="timeline-shell">
-        <div class="era-track" id="era-labels" aria-hidden="true"></div>
-        <div class="timeline-track">
-          <div class="timeline-base"></div>
-          <div class="timeline-fill" id="timeline-progress"></div>
-          <div class="timeline-cursor" id="timeline-cursor"><span></span></div>
-          <div class="timeline-events" id="timeline-nodes"></div>
-          <input id="timeline-scrubber" class="timeline-scrubber" type="range" min="0" max="10000" value="0" aria-label="Scrub through Earth history">
-        </div>
-        <div class="timeline-meta">
-          <span>4.54 BILLION YEARS AGO</span>
-          <strong id="timeline-age">4.54 BILLION YEARS AGO</strong>
-          <span>PRESENT DAY</span>
-        </div>
-      </div>
-    </footer>
-<a class="map-credit" href="https://www.earthbyte.org/paleomap-paleoatlas-for-gplates/" target="_blank" rel="noopener">PALEOGEOGRAPHY · SCOTESE · EVANS · ELMING / EARTHBYTE</a>
-    <div class="sr-only" id="screen-reader-status" aria-live="polite"></div>
-  </main>
-
-  <script>/* Earth history narrative dataset. No runtime network dependency. */
+<body data-build="v12-reference-shell" data-lighting="natural">
+<main class="reference-shell" id="app" data-state="loading">
+  <div id="earth-stage" aria-hidden="true">
+    <canvas id="earth-globe"></canvas><div class="earth-shade"></div>
+    <div class="earth-loading" id="earth-loading"><div class="load-inner"><span id="loading-label">ALIGNING DEEP TIME</span><i><b id="loading-bar"></b></i></div></div>
+    <div class="webgl-fallback" id="webgl-fallback" hidden><div><p>3D RENDERER UNAVAILABLE</p><span id="fallback-message"></span></div></div>
+  </div>
+  <header class="topbar"><button class="brand" id="brand-button">earth<span>.</span></button><nav class="site-nav"><a class="active" href="#planet">The Planet</a><a href="#civilization">Civilization</a><a href="#orbit">Orbit</a><a href="#moon">Moon</a><a href="#earthquakes">Earthquakes</a><a href="#oceans">Oceans</a></nav><a class="sources" href="#sources">Sources <b>↗</b></a></header>
+  <header class="mobile-header"><button class="brand" id="mobile-brand">earth<span>.</span></button><button id="menu-toggle" aria-expanded="false">Explore <i></i></button></header>
+  <div class="kicker-line">A WORLD, FOUR BILLION YEARS IN THE MAKING</div>
+  <section class="hero" id="story"><p class="eyebrow" id="era-eon">PRESENT DAY</p><h1 id="era-title">Explore our<br>planet.</h1><p id="era-subtitle">Every coastline has a past. Every mountain, a beginning. Travel through 4.54 billion years of becoming.</p><div class="hero-actions-label">EXPLORE 4.54 BILLION YEARS OF EARTH HISTORY</div><div class="hero-actions"><button class="primary-cta" id="back-time">Go back in time <span>←</span></button><button class="secondary-cta" id="read-record">Read the record <b>↗</b></button></div></section>
+  <aside class="age-panel"><div class="kind" id="view-kind">PHOTOGRAPHIC EARTH</div><div class="number" id="age-number">Now</div><div class="unit" id="age-unit">OUR MOMENT IN THE STORY</div><div class="compare">Compare with today</div><button class="return" id="present-reset">Back to today&nbsp;&nbsp;↗</button></aside>
+  <div class="zoom-stack"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-mid" aria-label="Reset zoom">−</button><button id="zoom-out" aria-label="Zoom out">−</button></div>
+  <div class="story-play"><button class="play" id="play-button">Play the story</button><button class="speed" id="speed-button">1×</button></div>
+  <section class="timeline-block"><div class="timeline-title">EARTH THROUGH TIME</div><div class="timeline-help"><span>Scroll to travel through time</span><span>Drag to orbit</span></div><div class="range-wrap"><div class="track"></div><input class="history-range" id="history-range" type="range" min="0" max="9" step="0.005" value="9" aria-label="Earth history timeline"><div class="era-stops" id="era-stops"></div></div><div class="timeline-meta"><div class="key"><b>FORMATION <i></i> PRESENT</b></div><div>Ga = billion years · Ma = million years&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;Event spacing is not linear</div></div></section>
+  <footer class="bottom-rail"><div class="orbit-copy"><strong>ORBITAL PERSPECTIVE</strong><span id="orbit-coords">17.00° N · 77.00° E</span></div><div class="view-modes"><button class="active" data-mode="natural"><span>◉</span>Natural</button><button data-mode="after-dark"><span>☾</span>After dark</button><button data-mode="blue-hour"><span>☼</span>Blue hour</button></div><div class="footer-tools"><button>☼</button><button>☁</button><button id="footer-play">Ⅱ</button><span>│</span><button>◎</button><button>⌗</button></div></footer>
+  <div class="footer-tag">THE PAST IS ANOTHER WORLD. IT IS ALSO OURS.</div><a class="data-link" href="#sources">DATA, IMAGERY &amp; SCIENCE&nbsp;&nbsp;↗</a>
+  <section class="mobile-panel" id="mobile-panel"><div class="panel-top"><span>Our planet today</span><button id="clear-view" style="all:unset;cursor:pointer">Clear view</button></div><div class="mobile-kicker" id="mobile-kicker">PRESENT DAY</div><h1 id="mobile-title">Explore our<br>planet.</h1><p class="mobile-copy" id="mobile-copy">Every coastline has a past. Every mountain, a beginning. Travel through 4.54 billion years of becoming.</p><div class="mobile-actions"><button id="mobile-back">Go back in time</button><button id="mobile-play">▷&nbsp;&nbsp; Play the story</button><button id="mobile-speed">1×</button></div><button class="mobile-toggle" id="mobile-panel-toggle" aria-expanded="false">Story &amp; controls</button><div class="mobile-details"><div class="detail-section"><h3>EXPLORE 4.54 BILLION YEARS OF EARTH HISTORY</h3><p id="mobile-age-copy">PHOTOGRAPHIC EARTH · Now · OUR MOMENT IN THE STORY</p></div><div class="detail-section"><h3>EARTH THROUGH TIME</h3><div class="mobile-stop-grid" id="mobile-stop-grid"></div></div><div class="detail-section"><h3>ORBITAL PERSPECTIVE</h3><p id="mobile-orbit">17.00° N · 77.00° E</p><div class="view-modes" style="display:flex;margin-top:16px"><button class="active" data-mode="natural">Natural</button><button data-mode="after-dark">After dark</button><button data-mode="blue-hour">Blue hour</button></div></div><div class="detail-section"><h3>DATA, IMAGERY &amp; SCIENCE</h3><p>Sources &amp; scientific notes ↗</p></div></div></section>
+  <nav class="mobile-nav" id="mobile-navigation"><a href="#planet">The Planet <span>↗</span></a><a href="#civilization">Civilization <span>↗</span></a><a href="#orbit">Orbit <span>↗</span></a><a href="#moon">Moon <span>↗</span></a><a href="#earthquakes">Earthquakes <span>↗</span></a><a href="#oceans">Oceans <span>↗</span></a><span class="sources-mobile">Sources &amp; scientific notes ↗</span></nav>
+  <div class="sr-only" id="screen-reader-status" aria-live="polite"></div>
+</main>
+<script>/* Earth history narrative dataset. No runtime network dependency. */
 (function(global){
   "use strict";
   const ERAS = [
@@ -375,7 +354,7 @@
   class EarthGlobe {
     constructor(canvas, opts={}){
       this.canvas=canvas; this.opts=opts; this.gl=canvas.getContext('webgl2',{antialias:true,alpha:false,powerPreference:'high-performance'});
-      this.ready=false; this.failed=false; this.paleoTextures=[]; this.running=true; this.destroyed=false; this.reduced=!!opts.reducedMotion; this.targetAge=4540; this.age=4540; this.baseDistance=5.78; this.zoomOffset=0; this.distance=5.78; this.targetDistance=5.78; this.globeOffsetX=.78; this.targetOffsetX=.78; this.parallax=[0,0]; this.parallaxTarget=[0,0]; this.spinVelocity=[0,0]; this.quat=quatMul(quatAxis([1,0,0],-8*DEG),quatAxis([0,1,0],-75*DEG)); this.focusTarget=null; this.focusStart=0; this.focusFrom=null; this.dragging=false; this.lastPointer=null; this.pointers=new Map(); this.pinchDistance=null; this.lastFrame=performance.now(); this.lastRender=0; this.framesRendered=0; this.raf=0;
+      this.ready=false; this.failed=false; this.paleoTextures=[]; this.running=true; this.destroyed=false; this.reduced=!!opts.reducedMotion; this.targetAge=0; this.age=0; this.baseDistance=9.25; this.zoomOffset=0; this.distance=9.25; this.targetDistance=9.25; this.globeOffsetX=1.52; this.targetOffsetX=1.52; this.parallax=[0,0]; this.parallaxTarget=[0,0]; this.spinVelocity=[0,0]; this.quat=quatMul(quatAxis([1,0,0],-8*DEG),quatAxis([0,1,0],-75*DEG)); this.focusTarget=null; this.focusStart=0; this.focusFrom=null; this.dragging=false; this.lastPointer=null; this.pointers=new Map(); this.pinchDistance=null; this.lastFrame=performance.now(); this.lastRender=0; this.framesRendered=0; this.raf=0;
       if(!this.gl){ this.fail('WebGL 2 is unavailable on this device.'); return; }
       const debug=this.gl.getExtension('WEBGL_debug_renderer_info');
       this.rendererName=String(debug?this.gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):this.gl.getParameter(this.gl.RENDERER)||'');
@@ -452,7 +431,7 @@
     }
     buildRoute(r){ const a=geoVec(r.from[0],r.from[1]), b=geoVec(r.to[0],r.to[1]), pts=[]; for(let i=0;i<=48;i++){const t=i/48,n=slerpVec(a,b,t),rad=2.055+Math.sin(Math.PI*t)*.19;pts.push(n[0]*rad,n[1]*rad,n[2]*rad);}return new Float32Array(pts); }
     setReducedMotion(v){ this.reduced=!!v; if(this.reduced||this.softwareRenderer)this.age=this.targetAge; this.requestDraw(); }
-    setAge(age){ this.targetAge=clamp(Number(age)||0,0,4540); const a=this.targetAge; this.baseDistance=a>3900?5.72:(a>750?5.56:(a>.3?5.43:5.28)); this.targetDistance=clamp(this.baseDistance+this.zoomOffset,4.55,8.0); this.targetOffsetX=this.canvas.clientWidth>980?(a>3900?.74:(a>750?.82:.86)):0; if(this.reduced||this.softwareRenderer){this.age=this.targetAge;this.distance=this.targetDistance;this.globeOffsetX=this.targetOffsetX;} this.requestDraw(); }
+    setAge(age){ this.targetAge=clamp(Number(age)||0,0,4540); const a=this.targetAge,mobile=this.canvas.clientWidth<=700; this.baseDistance=mobile?(a>750?13.9:13.4):(a>3900?9.75:(a>750?9.55:(a>.3?9.4:9.2))); this.targetDistance=clamp(this.baseDistance+this.zoomOffset,mobile?11.6:7.8,mobile?17.5:13.0); this.targetOffsetX=mobile?0:(a>3900?1.42:(a>750?1.48:1.54)); if(this.reduced||this.softwareRenderer){this.age=this.targetAge;this.distance=this.targetDistance;this.globeOffsetX=this.targetOffsetX;} this.requestDraw(); }
     focus(lat,lon){ if(lat==null||lon==null)return; const target=quatFromTo(geoVec(lat,lon),[0,0,1]); if(this.reduced||this.softwareRenderer){this.quat=target;this.focusTarget=null;this.requestDraw();return;} this.focusFrom=this.quat.slice(); this.focusTarget=target; this.focusStart=performance.now(); }
     cancelFocus(){ this.focusTarget=null; this.focusFrom=null; }
     requestDraw(){ if(!this.softwareRenderer||!this.ready||this.destroyed||!this.running)return; if(this.drawPending)return; this.drawPending=true; requestAnimationFrame(t=>{this.drawPending=false;if(this.running&&this.ready)this.frame(t);}); }
@@ -460,7 +439,7 @@
     frame(now){
       if(!this.running||!this.ready)return; this.framesRendered++; const gl=this.gl,dt=Math.min(.05,(now-this.lastFrame)/1000);this.lastFrame=now; this.resize();
       if(!this.reduced){ this.age+=(this.targetAge-this.age)*Math.min(1,dt*4.2); this.distance+=(this.targetDistance-this.distance)*Math.min(1,dt*4.0); this.globeOffsetX+=(this.targetOffsetX-this.globeOffsetX)*Math.min(1,dt*2.4); this.parallax[0]+=(this.parallaxTarget[0]-this.parallax[0])*Math.min(1,dt*3.0); this.parallax[1]+=(this.parallaxTarget[1]-this.parallax[1])*Math.min(1,dt*3.0); if(this.focusTarget&&this.focusFrom){const t=clamp((now-this.focusStart)/1550,0,1),ease=t*t*(3.0-2.0*t);this.quat=quatSlerp(this.focusFrom,this.focusTarget,ease);if(t>=1){this.focusTarget=null;this.focusFrom=null;}} else if(!this.dragging){const vx=this.spinVelocity[0],vy=this.spinVelocity[1];if(Math.abs(vx)+Math.abs(vy)>.001){this.quat=quatMul(quatAxis([0,1,0],vy*dt),quatMul(quatAxis([1,0,0],vx*dt),this.quat));const damp=Math.pow(.06,dt);this.spinVelocity[0]*=damp;this.spinVelocity[1]*=damp;}else{this.quat=quatMul(quatAxis([0,1,0],dt*.009),this.quat);}} }
-      const model=quatToMat4(this.quat); const mobile=this.canvas.clientWidth<=980,landscape=mobile&&this.canvas.clientWidth>this.canvas.clientHeight; model[12]=mobile?(landscape?.52:0):this.globeOffsetX; model[13]=mobile?(landscape?.10:.46):0; const camera=[this.reduced?0:this.parallax[0]*.16,.10+(this.reduced?0:this.parallax[1]*.10),this.distance],view=lookAt(camera,[0,0,0],[0,1,0]),proj=perspective(34.5*DEG,this.canvas.width/this.canvas.height,.1,100),mvp=mat4Mul(proj,mat4Mul(view,model));
+      const model=quatToMat4(this.quat); const mobile=this.canvas.clientWidth<=700,landscape=mobile&&this.canvas.clientWidth>this.canvas.clientHeight; model[12]=mobile?(landscape?.30:0):this.globeOffsetX; model[13]=mobile?(landscape?.10:.72):0; const camera=[this.reduced?0:this.parallax[0]*.12,.08+(this.reduced?0:this.parallax[1]*.08),this.distance],view=lookAt(camera,[0,0,0],[0,1,0]),proj=perspective(34.5*DEG,this.canvas.width/this.canvas.height,.1,100),mvp=mat4Mul(proj,mat4Mul(view,model));
       gl.enable(gl.DEPTH_TEST);gl.depthMask(true);gl.disable(gl.BLEND);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);gl.clearColor(.003,.008,.012,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
       this.drawEarth(model,view,proj,camera,now); if(!this.cratonsDisabled){try{this.drawCratons(mvp);}catch(err){this.cratonsDisabled=true;console.warn('Craton reconstruction disabled:',err);}} if(!this.softwareRenderer){this.drawClouds(model,view,proj,now); this.drawAtmosphere(model,view,proj,camera);} try{this.drawRoutes(mvp,now);}catch(err){console.warn('Migration overlay skipped:',err);} try{this.drawMarker(mvp,now);}catch(err){console.warn('Event marker skipped:',err);}
     }
@@ -485,92 +464,50 @@
     const c=g.canvas;
     const setParallax=e=>{if(g.reduced)return;const r=c.getBoundingClientRect(),nx=((e.clientX-r.left)/Math.max(1,r.width)-.5)*2,ny=((e.clientY-r.top)/Math.max(1,r.height)-.5)*2;g.parallaxTarget=[clamp(nx,-1,1),clamp(-ny,-1,1)];};
     c.addEventListener('pointerdown',e=>{c.setPointerCapture?.(e.pointerId);g.pointers.set(e.pointerId,[e.clientX,e.clientY]);g.dragging=true;g.opts.onDragging?.(true);g.opts.onInteract?.();g.cancelFocus();g.spinVelocity=[0,0];g.lastPointer=[e.clientX,e.clientY];setParallax(e);});
-    c.addEventListener('pointermove',e=>{setParallax(e);if(!g.pointers.has(e.pointerId)){g.requestDraw();return;}g.pointers.set(e.pointerId,[e.clientX,e.clientY]); if(g.pointers.size===2){const pts=[...g.pointers.values()],d=Math.hypot(pts[0][0]-pts[1][0],pts[0][1]-pts[1][1]);if(g.pinchDistance!=null){const delta=(g.pinchDistance-d)*.012;g.zoomOffset=clamp(g.zoomOffset+delta,-1.0,2.2);g.targetDistance=clamp(g.baseDistance+g.zoomOffset,4.55,8.0);}g.pinchDistance=d;g.requestDraw();return;} const last=g.lastPointer||[e.clientX,e.clientY],dx=e.clientX-last[0],dy=e.clientY-last[1];g.lastPointer=[e.clientX,e.clientY]; const qy=quatAxis([0,1,0],dx*.005),qx=quatAxis([1,0,0],dy*.005);g.quat=quatMul(qy,quatMul(qx,g.quat));g.spinVelocity=[dy*.095,dx*.095];g.requestDraw();});
+    c.addEventListener('pointermove',e=>{setParallax(e);if(!g.pointers.has(e.pointerId)){g.requestDraw();return;}g.pointers.set(e.pointerId,[e.clientX,e.clientY]); if(g.pointers.size===2){const pts=[...g.pointers.values()],d=Math.hypot(pts[0][0]-pts[1][0],pts[0][1]-pts[1][1]);if(g.pinchDistance!=null){const delta=(g.pinchDistance-d)*.012;g.zoomOffset=clamp(g.zoomOffset+delta,-1.6,3.5);g.targetDistance=clamp(g.baseDistance+g.zoomOffset,g.canvas.clientWidth<=700?11.6:7.8,g.canvas.clientWidth<=700?17.5:13.0);}g.pinchDistance=d;g.requestDraw();return;} const last=g.lastPointer||[e.clientX,e.clientY],dx=e.clientX-last[0],dy=e.clientY-last[1];g.lastPointer=[e.clientX,e.clientY]; const qy=quatAxis([0,1,0],dx*.005),qx=quatAxis([1,0,0],dy*.005);g.quat=quatMul(qy,quatMul(qx,g.quat));g.spinVelocity=[dy*.095,dx*.095];g.requestDraw();});
     const end=e=>{g.pointers.delete(e.pointerId);if(g.pointers.size<2)g.pinchDistance=null;if(g.pointers.size===0){g.dragging=false;g.opts.onDragging?.(false);g.lastPointer=null;}};c.addEventListener('pointerup',end);c.addEventListener('pointercancel',end);
     c.addEventListener('pointerleave',()=>{if(!g.dragging){g.parallaxTarget=[0,0];g.requestDraw();}});
-    c.addEventListener('wheel',e=>{e.preventDefault();g.opts.onInteract?.();g.cancelFocus();g.zoomOffset=clamp(g.zoomOffset+Math.sign(e.deltaY)*.28,-1.0,2.2);g.targetDistance=clamp(g.baseDistance+g.zoomOffset,4.55,8.0);g.requestDraw();},{passive:false});
+    c.addEventListener('wheel',e=>{e.preventDefault();g.opts.onInteract?.();g.cancelFocus();g.zoomOffset=clamp(g.zoomOffset+Math.sign(e.deltaY)*.30,-1.6,3.5);g.targetDistance=clamp(g.baseDistance+g.zoomOffset,g.canvas.clientWidth<=700?11.6:7.8,g.canvas.clientWidth<=700?17.5:13.0);g.requestDraw();},{passive:false});
     c.addEventListener('dblclick',()=>{g.opts.onInteract?.();g.zoomOffset=0;g.targetDistance=g.baseDistance;g.requestDraw();});
   }
 
   global.EarthGlobe=EarthGlobe;
 })(window);
 </script>
-  <script>window.__EARTH_ERRORS__=[];window.addEventListener('error',e=>window.__EARTH_ERRORS__.push({type:'error',message:e.message||String(e.error||'unknown'),source:e.filename||'',line:e.lineno||0}));window.addEventListener('unhandledrejection',e=>window.__EARTH_ERRORS__.push({type:'rejection',message:String(e.reason?.message||e.reason||'unknown')}));</script>
-  <script>(function(){
-  'use strict';
-  const D=window.EARTH_DATA;
-  if(!D){document.body.innerHTML='<p style="color:white">Earth data unavailable.</p>';return;}
-  const EVENTS=D.EVENTS_DESC, ERAS=D.ERAS;
-  const $=id=>document.getElementById(id);
-  const els={app:$('app'),canvas:$('earth-globe'),loading:$('earth-loading'),loadingLabel:$('loading-label'),loadingBar:$('loading-bar'),fallback:$('webgl-fallback'),fallbackMessage:$('fallback-message'),brand:$('brand-button'),now:$('now-button'),play:$('play-button'),playIcon:$('play-icon'),era:$('masthead-era'),count:$('story-count'),total:$('story-total'),time:$('story-time'),title:$('story-title'),summary:$('story-summary'),eraSubtitle:$('story-era-subtitle'),confidence:$('story-confidence'),human:$('human-phase'),prev:$('prev-button'),next:$('next-button'),eraLabels:$('era-labels'),timelineProgress:$('timeline-progress'),timelineCursor:$('timeline-cursor'),timelineNodes:$('timeline-nodes'),scrubber:$('timeline-scrubber'),timelineAge:$('timeline-age'),sr:$('screen-reader-status')};
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let globe=null, activeIndex=0, progress=D.ageToProgress(EVENTS[0].ageMa), ageMa=EVENTS[0].ageMa, playing=false, playRaf=0, lastPlayTime=0, lastStoryIndex=-1, draggingTimeline=false;
-
-  function formatAge(age){return D.formatAge(age).toUpperCase();}
-  function eventIndexForAge(age){
-    const p=D.ageToProgress(age); let best=0,dist=Infinity;
-    EVENTS.forEach((e,i)=>{const d=Math.abs(D.ageToProgress(e.ageMa)-p);if(d<dist){dist=d;best=i;}});return best;
-  }
-  function buildTimeline(){
-    const total=ERAS.reduce((s,e)=>s+(D.ERA_VISUAL_WEIGHTS?.[e.id]||1),0);
-    let acc=0;
-    ERAS.forEach(era=>{const w=(D.ERA_VISUAL_WEIGHTS?.[era.id]||1)/total;const el=document.createElement('span');el.className='era-segment';el.dataset.era=era.id;el.dataset.short=era.name.slice(0,4).toUpperCase();el.textContent=era.name;el.style.width=`${w*100}%`;el.style.marginLeft=acc===0?'0':'';els.eraLabels.appendChild(el);acc+=w;});
-    EVENTS.forEach((event,i)=>{const tick=document.createElement('i');tick.className='event-tick';tick.dataset.index=i;tick.style.left=`${D.ageToProgress(event.ageMa)*100}%`;els.timelineNodes.appendChild(tick);});
-    els.total.textContent=String(EVENTS.length).padStart(2,'0');
-  }
-  function syncUrl(event){try{const u=new URL(location.href);u.searchParams.set('chapter',event.id);history.replaceState(null,'',u);}catch(_){}}
-  function updateStory(force=false,announce=true){
-    const event=EVENTS[activeIndex], era=D.getEra(ageMa);
-    if(force||activeIndex!==lastStoryIndex){
-      const storyEl=document.getElementById('story'); storyEl?.classList.add('is-changing'); clearTimeout(updateStory._timer);
-      const commit=()=>{els.count.textContent=String(activeIndex+1).padStart(2,'0');els.title.textContent=event.title;els.summary.textContent=event.summary;storyEl?.classList.remove('is-changing');};
-      if(lastStoryIndex<0||force&&lastStoryIndex<0)commit();else updateStory._timer=setTimeout(commit,130);
-      els.eraSubtitle.textContent=era.subtitle;
-      els.app.dataset.era=era.id; els.app.dataset.chapter=event.id;
-      els.confidence.textContent=`${(event.confidence||'contextual').toUpperCase()} CONFIDENCE`;
-      [...els.timelineNodes.children].forEach((n,i)=>n.classList.toggle('active',i===activeIndex));
-      syncUrl(event);
-      if(announce)els.sr.textContent=`${event.title}. ${formatAge(ageMa)}. ${event.summary}`;
-      lastStoryIndex=activeIndex;
-    }
-    els.app.dataset.era=era.id; els.app.dataset.chapter=event.id; els.app.dataset.surface=ageMa>1860?'procedural':(ageMa>750?'craton':(ageMa>2?'paleomap':'modern'));
-    els.time.textContent=formatAge(ageMa);
-    els.timelineAge.textContent=formatAge(ageMa);
-    els.era.textContent=era.name.toUpperCase();
-    [...els.eraLabels.children].forEach(n=>n.classList.toggle('active',n.dataset.era===era.id));
-    els.timelineProgress.style.width=`${progress*100}%`;
-    els.timelineCursor.style.left=`${progress*100}%`;
-    els.scrubber.value=String(Math.round(progress*10000));
-    els.scrubber.setAttribute('aria-valuetext',formatAge(ageMa));
-    els.human.hidden=ageMa>.15;
-    els.prev.disabled=activeIndex===0;
-    els.next.disabled=activeIndex===EVENTS.length-1;
-  }
-  function setContinuousProgress(p,{announce=false,focus=false}={}){
-    progress=Math.max(0,Math.min(1,p)); ageMa=D.progressToAge(progress); const nextIndex=eventIndexForAge(ageMa); const changed=nextIndex!==activeIndex; activeIndex=nextIndex;
-    updateStory(changed,announce&&changed);
-    globe?.setAge(ageMa);
-    if(focus&&changed){const e=EVENTS[activeIndex];if(e.latitude!=null&&e.longitude!=null)globe?.focus(e.latitude,e.longitude);}
-  }
-  function selectEvent(index,{announce=true}={}){
-    stopPlayback(); activeIndex=Math.max(0,Math.min(EVENTS.length-1,index));const e=EVENTS[activeIndex];progress=D.ageToProgress(e.ageMa);ageMa=e.ageMa;updateStory(true,announce);globe?.setAge(ageMa);if(e.latitude!=null&&e.longitude!=null)globe?.focus(e.latitude,e.longitude);else if(e.id==='present')globe?.focus(18,12);
-  }
-  function previous(){selectEvent(activeIndex-1)} function next(){selectEvent(activeIndex+1)}
-  function stopPlayback(){playing=false;cancelAnimationFrame(playRaf);playRaf=0;lastPlayTime=0;els.playIcon.textContent='▶';els.play.setAttribute('aria-label','Play Earth history');els.app.dataset.playing='false';}
-  function togglePlayback(){if(playing){stopPlayback();return;}playing=true;els.playIcon.textContent='Ⅱ';els.play.setAttribute('aria-label','Pause Earth history');els.app.dataset.playing='true';lastPlayTime=performance.now();const run=t=>{if(!playing)return;const dt=Math.min(.08,(t-lastPlayTime)/1000);lastPlayTime=t;const speed=.014;const nextP=progress+dt*speed;if(nextP>=1){setContinuousProgress(1,{announce:true});stopPlayback();return;}setContinuousProgress(nextP,{announce:true});playRaf=requestAnimationFrame(run)};playRaf=requestAnimationFrame(run)}
-  function showFallback(message){els.app.dataset.state='fallback';els.loading.classList.add('is-done');els.fallbackMessage.textContent=message||'This browser could not start the WebGL renderer.';els.fallback.hidden=false}
-  function initGlobe(){let probe=null;try{probe=els.canvas.getContext('webgl2',{antialias:true,alpha:false})}catch(_){}if(!probe){showFallback('WebGL 2 is unavailable. The timeline remains usable, but the live 3D planet cannot be rendered on this device.');return}els.loadingBar.style.width='52%';els.loadingLabel.textContent='BUILDING ATMOSPHERE';setTimeout(()=>els.loadingBar.style.width='78%',260);globe=new window.EarthGlobe(els.canvas,{modernTexture:'https://earth-paleo-assets-staging.vercel.app/paleo/1.jpg',landMaskTexture:'https://earth-paleo-assets-staging.vercel.app/paleo/1.jpg',paleoSlices:D.PALEO_SLICES||[],cratonShapes:window.EARTH_CRATON_SHAPES,cratonRotations:window.EARTH_CRATON_ROTATIONS,reducedMotion:reduced.matches,getEvent:()=>EVENTS[activeIndex],onSurfaceProgress:(done,total)=>{const f=total?done/total:1;els.loadingLabel.textContent=done<total?'RECONSTRUCTING CONTINENTS':'ALIGNING DEEP TIME';els.loadingBar.style.width=`${78+Math.round(f*18)}%`;},onDragging:v=>{els.app.dataset.dragging=v?'true':'false';},onInteract:()=>{document.querySelector('.interaction-hint')?.classList.add('is-dismissed');},onReady:()=>{els.loadingBar.style.width='100%';els.loadingLabel.textContent='4.54 BILLION YEARS · READY';setTimeout(()=>els.loading.classList.add('is-done'),220);els.app.dataset.state='ready';globe.setAge(ageMa)},onError:showFallback});}
-  function bind(){
-    els.prev.addEventListener('click',previous);els.next.addEventListener('click',next);els.play.addEventListener('click',togglePlayback);els.now.addEventListener('click',()=>selectEvent(EVENTS.length-1));els.brand.addEventListener('click',()=>selectEvent(0));
-    els.scrubber.addEventListener('pointerdown',()=>{draggingTimeline=true;stopPlayback()});els.scrubber.addEventListener('input',e=>setContinuousProgress(Number(e.currentTarget.value)/10000,{announce:false}));els.scrubber.addEventListener('change',()=>{draggingTimeline=false;updateStory(true,true)});els.scrubber.addEventListener('pointerup',()=>{draggingTimeline=false;updateStory(true,true)});
-    window.addEventListener('keydown',e=>{const t=e.target;if(t instanceof HTMLElement&&t.matches('input,textarea,select,[contenteditable=true]'))return;if(e.key==='ArrowLeft')previous();else if(e.key==='ArrowRight')next();else if(e.key==='Home')selectEvent(0);else if(e.key==='End')selectEvent(EVENTS.length-1);else if(e.key===' '){e.preventDefault();togglePlayback()}});
-    const r=()=>globe?.setReducedMotion(reduced.matches);reduced.addEventListener?.('change',r);
-    addEventListener('pagehide',()=>{stopPlayback();globe?.destroy()},{once:true});
-  }
-  function initial(){let id=null;try{id=new URLSearchParams(location.search).get('chapter')}catch(_){}const idx=id?EVENTS.findIndex(e=>e.id===id):-1;if(idx>=0){activeIndex=idx;progress=D.ageToProgress(EVENTS[idx].ageMa);ageMa=EVENTS[idx].ageMa}buildTimeline();updateStory(true,false);bind();initGlobe();setTimeout(()=>{document.querySelector('.interaction-hint')?.classList.add('is-dismissed');if(!globe?.ready&&!globe?.failed){window.__EARTH_ERRORS__?.push({type:'selftest',message:'Renderer did not reach ready state within 8 seconds'});}},8000)}
-  initial();
-  window.__EARTH_APP__={get activeIndex(){return activeIndex},get ageMa(){return ageMa},get progress(){return progress},get globe(){return globe},selectEvent,setContinuousProgress,togglePlayback,diagnostics(){return{events:EVENTS.length,state:els.app.dataset.state,ready:!!globe?.ready,webgl:!!globe?.gl,ageMa,progress,title:EVENTS[activeIndex].title,renderer:globe?.rendererName||null,softwareRenderer:!!globe?.softwareRenderer,surface:els.app.dataset.surface||null,cratonSnapshots:globe?.cratonRotations?.length||0,paleoTextures:globe?.paleoTextures?.length||0,framesRendered:globe?.framesRendered||0,canvas:globe?{width:globe.canvas.width,height:globe.canvas.height}:null}}};
-})();
-</script>
-</body>
-</html>
+  <script>window.__EARTH_ERRORS__=[];window.addEventListener('error',e=>window.__EARTH_ERRORS__.push({type:'error',message:e.message||String(e.error||'unknown')}));window.addEventListener('unhandledrejection',e=>window.__EARTH_ERRORS__.push({type:'rejection',message:String(e.reason?.message||e.reason||'unknown')}));</script>
+<script>(function(){
+'use strict';
+const D=window.EARTH_DATA,$=id=>document.getElementById(id),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const STOPS=[
+ {age:4540,label:'4.54 Ga',name:'Formation',eon:'FORMATION · A MOLTEN WORLD',title:'Earth begins.',kind:'ILLUSTRATIVE DEEP TIME',unit:'BILLION YEARS AGO'},
+ {age:4300,label:'4.3 Ga',name:'First oceans',eon:'HADEAN · WATER ARRIVES',title:'The first oceans.',kind:'ILLUSTRATIVE DEEP TIME',unit:'BILLION YEARS AGO'},
+ {age:2400,label:'2.4 Ga',name:'Oxygen rises',eon:'PROTEROZOIC · A CHANGING SKY',title:'Oxygen remakes the world.',kind:'RECONSTRUCTED DEEP TIME',unit:'BILLION YEARS AGO'},
+ {age:650,label:'650 Ma',name:'Snowball Earth',eon:'PROTEROZOIC · A FROZEN PLANET',title:'A world in ice.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:540,label:'540 Ma',name:'Ancient seas',eon:'PALEOZOIC · LIFE EXPANDS',title:'Ancient seas awaken.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:400,label:'400 Ma',name:'Worlds converge',eon:'PALEOZOIC · CONTINENTS IN MOTION',title:'Worlds converge.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:300,label:'300 Ma',name:'Pangaea',eon:'PALEOZOIC · CONTINENTS IN MOTION',title:'Pangaea.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:200,label:'200 Ma',name:'The great divide',eon:'MESOZOIC · THE BREAKUP BEGINS',title:'The great divide.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:100,label:'100 Ma',name:'Oceans between',eon:'MESOZOIC · OCEANS BETWEEN',title:'Oceans between.',kind:'PALEOGEOGRAPHIC EARTH',unit:'MILLION YEARS AGO'},
+ {age:0,label:'Today',name:'Our world',eon:'PRESENT DAY',title:'Explore our\nplanet.',kind:'PHOTOGRAPHIC EARTH',unit:'OUR MOMENT IN THE STORY'}
+];
+const COPY='Every coastline has a past. Every mountain, a beginning. Travel through 4.54 billion years of becoming.';
+let globe=null,pos=9,playing=false,playRaf=0,lastT=0,speed=1;
+const els={app:$('app'),canvas:$('earth-globe'),loading:$('earth-loading'),loadingBar:$('loading-bar'),loadingLabel:$('loading-label'),fallback:$('webgl-fallback'),fallbackMessage:$('fallback-message'),range:$('history-range'),stops:$('era-stops'),title:$('era-title'),eon:$('era-eon'),subtitle:$('era-subtitle'),age:$('age-number'),unit:$('age-unit'),kind:$('view-kind'),orbit:$('orbit-coords'),play:$('play-button'),speed:$('speed-button'),mobilePanel:$('mobile-panel'),mobileTitle:$('mobile-title'),mobileKicker:$('mobile-kicker'),mobileCopy:$('mobile-copy'),mobileAge:$('mobile-age-copy'),mobileGrid:$('mobile-stop-grid'),mobileOrbit:$('mobile-orbit'),menu:$('mobile-navigation'),menuToggle:$('menu-toggle'),sr:$('screen-reader-status')};
+function ageAt(v){v=Math.max(0,Math.min(9,v));const i=Math.min(8,Math.floor(v)),t=v-i,a=STOPS[i].age,b=STOPS[i+1].age;return a+(b-a)*t}
+function nearest(v){return Math.max(0,Math.min(9,Math.round(v)))}
+function ageText(age){if(age<=.001)return 'Now';if(age>=1000)return (age/1000).toFixed(age%1000===0?1:2).replace(/0$/,'').replace(/\.$/,'');return Math.max(1,Math.round(age)).toLocaleString()}
+function setCopy(i){const s=STOPS[i],present=i===9;els.eon.textContent=s.eon;els.title.innerHTML=s.title.replace('\n','<br>');els.subtitle.textContent=COPY;els.kind.textContent=s.kind;els.age.textContent=present?'Now':ageText(s.age);els.unit.textContent=s.unit;els.mobileKicker.textContent=s.eon;els.mobileTitle.innerHTML=s.title.replace('\n','<br>');els.mobileCopy.textContent=COPY;els.mobileAge.textContent=`${s.kind} · ${present?'Now':s.label} · ${s.unit}`;els.sr.textContent=`${s.name}. ${s.label}. ${s.title.replace('\n',' ')}`;[...els.stops.children].forEach((b,n)=>b.classList.toggle('active',n===i));[...els.mobileGrid.children].forEach((b,n)=>b.classList.toggle('active',n===i))}
+function setPosition(v,{focus=false}={}){pos=Math.max(0,Math.min(9,v));els.range.value=String(pos);const age=ageAt(pos),i=nearest(pos);setCopy(i);globe?.setAge(age);if(focus&&i===9)globe?.focus(22,72);const lon=77-(9-pos)*7.5,lat=17+(9-pos)*.65;els.orbit.textContent=`${lat.toFixed(2)}° N · ${Math.abs(lon).toFixed(2)}° ${lon>=0?'E':'W'}`;els.mobileOrbit.textContent=els.orbit.textContent;els.app.dataset.stop=String(i);els.app.dataset.age=String(age)}
+function buildStops(){STOPS.forEach((s,i)=>{const b=document.createElement('button');b.className='era-stop'+(i===9?' active':'');b.innerHTML=`<strong>${s.label}</strong><small>${s.name}</small>`;b.addEventListener('click',()=>{stop();setPosition(i,{focus:true})});els.stops.appendChild(b);const m=document.createElement('button');m.innerHTML=`<strong>${s.label}</strong><small>${s.name}</small>`;m.addEventListener('click',()=>{stop();setPosition(i,{focus:true});els.mobilePanel.classList.remove('expanded')});els.mobileGrid.appendChild(m)})}
+function stop(){playing=false;cancelAnimationFrame(playRaf);playRaf=0;els.play.textContent='Play the story';$('mobile-play').innerHTML='▷&nbsp;&nbsp; Play the story'}
+function togglePlay(){if(playing){stop();return}playing=true;els.play.textContent='Pause the story';$('mobile-play').textContent='Ⅱ  Pause the story';lastT=performance.now();const loop=t=>{if(!playing)return;const dt=Math.min(.05,(t-lastT)/1000);lastT=t;const next=pos-dt*.18*speed;if(next<=0){setPosition(0);stop();return}setPosition(next);playRaf=requestAnimationFrame(loop)};playRaf=requestAnimationFrame(loop)}
+function cycleSpeed(){speed=speed===1?2:speed===2?.5:1;els.speed.textContent=`${speed}×`;$('mobile-speed').textContent=`${speed}×`}
+function zoom(delta){if(!globe)return;globe.zoomOffset=Math.max(-1.6,Math.min(3.5,globe.zoomOffset+delta));const min=globe.canvas.clientWidth<=700?11.6:7.8,max=globe.canvas.clientWidth<=700?17.5:13;globe.targetDistance=Math.max(min,Math.min(max,globe.baseDistance+globe.zoomOffset));globe.requestDraw()}
+function setMode(mode){document.body.dataset.lighting=mode;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode))}
+function showFallback(msg){els.loading.classList.add('is-done');els.fallback.hidden=false;els.fallbackMessage.textContent='This browser could not initialize the interactive Earth renderer.';window.__EARTH_ERRORS__.push({type:'renderer',message:msg||'unknown'})}
+function initGlobe(){els.loadingBar.style.width='34%';setTimeout(()=>els.loadingBar.style.width='68%',180);globe=new window.EarthGlobe(els.canvas,{modernTexture:'https://earth-paleo-assets-staging.vercel.app/paleo/1.jpg',landMaskTexture:'https://earth-paleo-assets-staging.vercel.app/paleo/1.jpg',paleoSlices:D.PALEO_SLICES||[],cratonShapes:window.EARTH_CRATON_SHAPES,cratonRotations:window.EARTH_CRATON_ROTATIONS,reducedMotion:reduced.matches,getEvent:()=>null,onSurfaceProgress:(done,total)=>{els.loadingLabel.textContent=done<total?'RECONSTRUCTING CONTINENTS':'ALIGNING DEEP TIME';els.loadingBar.style.width=`${68+Math.round((total?done/total:1)*28)}%`},onDragging:v=>els.app.dataset.dragging=v?'true':'false',onReady:()=>{els.loadingBar.style.width='100%';setTimeout(()=>els.loading.classList.add('is-done'),180);els.app.dataset.state='ready';setPosition(9,{focus:true})},onError:showFallback})}
+function bind(){els.range.addEventListener('input',e=>{stop();setPosition(Number(e.target.value))});$('back-time').addEventListener('click',()=>{stop();setPosition(0,{focus:true})});$('mobile-back').addEventListener('click',()=>{stop();setPosition(0,{focus:true})});$('present-reset').addEventListener('click',()=>{stop();setPosition(9,{focus:true})});$('brand-button').addEventListener('click',()=>setPosition(9,{focus:true}));$('mobile-brand').addEventListener('click',()=>setPosition(9,{focus:true}));els.play.addEventListener('click',togglePlay);$('mobile-play').addEventListener('click',togglePlay);$('footer-play').addEventListener('click',togglePlay);els.speed.addEventListener('click',cycleSpeed);$('mobile-speed').addEventListener('click',cycleSpeed);$('zoom-in').addEventListener('click',()=>zoom(-.5));$('zoom-mid').addEventListener('click',()=>{if(globe){globe.zoomOffset=0;globe.targetDistance=globe.baseDistance;globe.requestDraw()}});$('zoom-out').addEventListener('click',()=>zoom(.5));document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));$('mobile-panel-toggle').addEventListener('click',e=>{const open=els.mobilePanel.classList.toggle('expanded');e.currentTarget.setAttribute('aria-expanded',String(open));e.currentTarget.firstChild.nodeValue=open?'Back to globe':'Story & controls'});els.menuToggle.addEventListener('click',()=>{const open=els.menu.classList.toggle('open');els.menuToggle.setAttribute('aria-expanded',String(open))});$('clear-view').addEventListener('click',()=>els.mobilePanel.style.display='none');addEventListener('keydown',e=>{if(e.key==='ArrowLeft')setPosition(Math.max(0,nearest(pos)-1),{focus:true});if(e.key==='ArrowRight')setPosition(Math.min(9,nearest(pos)+1),{focus:true});if(e.key===' '){e.preventDefault();togglePlay()}});addEventListener('wheel',e=>{if(innerWidth>700&&Math.abs(e.deltaY)>5){stop();setPosition(pos+Math.sign(e.deltaY)*.05)}},{passive:true})}
+buildStops();bind();setCopy(9);initGlobe();
+window.__EARTH_APP__={get position(){return pos},get globe(){return globe},setPosition,diagnostics(){return{build:'v12-reference-shell',state:els.app.dataset.state,ready:!!globe?.ready,errors:[...(window.__EARTH_ERRORS__||[])],position:pos,age:ageAt(pos),renderer:globe?.rendererName||null,canvas:globe?{width:globe.canvas.width,height:globe.canvas.height}:null}}};
+})();</script>
+</body></html>
