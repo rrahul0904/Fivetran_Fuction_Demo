@@ -1,0 +1,80 @@
+name: Capture EARTH reference states
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+      - name: Install Selenium
+        run: python -m pip install --quiet selenium
+      - name: Capture interactive reference states
+        shell: bash
+        run: |
+          cat > /tmp/capture.py <<'PY'
+          import os, time
+          from selenium import webdriver
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.ui import WebDriverWait
+          from selenium.webdriver.support import expected_conditions as EC
+
+          URL='https://earth.ethanplus.ai/'
+          opts=Options()
+          opts.binary_location=os.environ.get('CHROME_BIN','/opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome')
+          for a in ['--headless=new','--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist']:
+              opts.add_argument(a)
+          d=webdriver.Chrome(options=opts)
+          wait=WebDriverWait(d,25)
+
+          def ready():
+              wait.until(lambda x: x.execute_script("return document.querySelector('.world-shell')?.classList.contains('ready')"))
+              time.sleep(2)
+
+          def shot(name,w=1440,h=900):
+              d.set_window_size(w,h)
+              time.sleep(1)
+              d.save_screenshot(name+'.png')
+              with open(name+'-dom.html','w',encoding='utf-8') as f:f.write(d.page_source)
+
+          def desktop():
+              d.set_window_size(1440,900); d.get(URL); ready(); shot('ref-present')
+              # capture each major stop by clicking actual stop controls
+              for idx,name in [(0,'formation'),(1,'first-oceans'),(3,'snowball'),(6,'pangaea'),(8,'100ma'),(9,'present-again')]:
+                  b=wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,f'.era-stops button[data-era="{idx}"]')))
+                  d.execute_script('arguments[0].click()',b); time.sleep(3); shot('ref-'+name)
+              # night mode
+              n=wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'[data-mode="night"]')))
+              d.execute_script('arguments[0].click()',n);time.sleep(3);shot('ref-night')
+              # present restore then clear-view if available
+              p=d.find_element(By.ID,'present-reset');d.execute_script('arguments[0].click()',p);time.sleep(2)
+          def mobile():
+              d.set_window_size(390,844);d.get(URL);ready();shot('ref-mobile-present',390,844)
+              t=wait.until(EC.element_to_be_clickable((By.ID,'mobile-panel-toggle')))
+              d.execute_script('arguments[0].click()',t);time.sleep(1);shot('ref-mobile-panel-open',390,844)
+              # close panel if needed, open explore menu
+              try:d.execute_script('arguments[0].click()',t)
+              except:pass
+              m=wait.until(EC.element_to_be_clickable((By.ID,'menu-toggle')))
+              d.execute_script('arguments[0].click()',m);time.sleep(1);shot('ref-mobile-menu',390,844)
+          try:
+              desktop(); mobile()
+          finally:
+              d.quit()
+          PY
+          CHROME_BIN="$(which chrome || which google-chrome || which chromium || true)" python /tmp/capture.py
+          ls -lh ref-*.png
+      - name: Upload state evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: earth-reference-states
+          path: |
+            ref-*.png
+            ref-*-dom.html
