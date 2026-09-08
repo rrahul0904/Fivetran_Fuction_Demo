@@ -36,7 +36,7 @@ jobs:
           echo "DOM_BYTES=$DOM_BYTES"
           test "$BYTES" -gt 10000
           test "$DOM_BYTES" -gt 50000
-          grep -q 'data-build="v11-git-static"' earth-dom.html
+          grep -q 'data-build="v12-reference-shell"' earth-dom.html
           grep -q 'EARTH — The making of home' earth-dom.html
           ! grep -q 'Application failed to respond' earth-dom.html
           ! grep -q 'Welcome to nginx' earth-dom.html
