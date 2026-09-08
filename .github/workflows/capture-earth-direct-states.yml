@@ -1,0 +1,44 @@
+name: Capture EARTH direct timeline states
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+      - run: python -m pip install --quiet selenium
+      - name: Capture
+        shell: bash
+        run: |
+          cat > /tmp/direct.py <<'PY'
+          import os,time,json
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.ui import WebDriverWait
+          URL='https://earth.ethanplus.ai/'
+          o=Options();o.binary_location=os.environ.get('CHROME_BIN','/opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome')
+          for a in ['--headless=new','--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist']:o.add_argument(a)
+          d=webdriver.Chrome(options=o);d.set_window_size(1440,900);d.get(URL)
+          WebDriverWait(d,25).until(lambda x:x.execute_script("return document.querySelector('.world-shell')?.classList.contains('ready')"));time.sleep(2)
+          out=[]
+          for idx,name in [(0,'formation'),(1,'oceans'),(2,'oxygen'),(3,'snowball'),(4,'ancient-seas'),(5,'converge'),(6,'pangaea'),(7,'divide'),(8,'100ma'),(9,'present')]:
+              d.execute_script("const r=document.querySelector('#history-range');r.value=arguments[0];r.dispatchEvent(new Event('input',{bubbles:true}));r.dispatchEvent(new Event('change',{bubbles:true}));",idx)
+              time.sleep(2.2)
+              state=d.execute_script("return {title:document.querySelector('#era-title')?.innerText, eon:document.querySelector('#era-eon')?.innerText, subtitle:document.querySelector('#era-subtitle')?.innerText, age:document.querySelector('#age-number')?.innerText, unit:document.querySelector('#age-unit')?.innerText, view:document.querySelector('#view-kind')?.innerText, value:document.querySelector('#history-range')?.value, camera:document.querySelector('#earth-canvas')?.dataset.cameraDistance, engine:document.querySelector('#earth-canvas')?.dataset.engine};")
+              out.append({'idx':idx,'name':name,**state});d.save_screenshot('direct-'+name+'.png')
+          open('direct-states.json','w').write(json.dumps(out,indent=2));d.quit()
+          PY
+          CHROME_BIN="$(which chrome || which google-chrome || which chromium || true)" python /tmp/direct.py
+          cat direct-states.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: earth-direct-states
+          path: |
+            direct-states.json
+            direct-*.png
