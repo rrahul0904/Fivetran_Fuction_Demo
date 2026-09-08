@@ -1,0 +1,42 @@
+name: Tune EARTH present orientation
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+      - run: python -m pip install --quiet selenium
+      - name: Capture orientation variants
+        shell: bash
+        run: |
+          cat > /tmp/tune.py <<'PY'
+          import os,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.ui import WebDriverWait
+          URL='https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/earth-static-preview-20260908/index.html'
+          TEX='https://raw.githubusercontent.com/szupie/supercontinents/production/assets/map-textures/hi-res/1.jpg'
+          o=Options();o.binary_location=os.environ.get('CHROME_BIN','/opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome')
+          for a in ['--headless=new','--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist']:o.add_argument(a)
+          d=webdriver.Chrome(options=o);d.set_window_size(1440,900);d.get(URL)
+          WebDriverWait(d,30).until(lambda x:x.execute_script("return !!window.__EARTH_APP__?.globe?.ready"))
+          ok=d.execute_async_script("""const done=arguments[arguments.length-1],g=window.__EARTH_APP__.globe;g.loadTexture(arguments[0]).then(t=>{g.modernTex=t;g.maskTex=t;g.requestDraw();done(true)}).catch(e=>done(String(e)))""",TEX)
+          print('HIRES',ok);time.sleep(2)
+          for lat,lon,name in [(22,72,'a-22-72'),(20,92,'b-20-92'),(18,112,'c-18-112'),(28,82,'d-28-82'),(12,92,'e-12-92')]:
+              d.execute_script("window.__EARTH_APP__.globe.focus(arguments[0],arguments[1]);",lat,lon)
+              time.sleep(2.1)
+              d.save_screenshot(name+'.png')
+          d.quit()
+          PY
+          CHROME_BIN="$(which chrome || which google-chrome || which chromium || true)" python /tmp/tune.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: earth-orientation-variants
+          path: '*.png'
