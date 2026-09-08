@@ -1,0 +1,53 @@
+name: Capture EARTH reference comparison
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+      - name: Capture reference and candidate
+        shell: bash
+        run: |
+          set -euxo pipefail
+          REF="https://earth.ethanplus.ai/"
+          CAND="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/earth-static-preview-20260908/index.html"
+          capture () {
+            NAME="$1"; URL="$2"; SIZE="$3"
+            timeout 75s google-chrome \
+              --headless=new \
+              --no-sandbox \
+              --disable-dev-shm-usage \
+              --enable-unsafe-swiftshader \
+              --use-angle=swiftshader \
+              --ignore-gpu-blocklist \
+              --window-size="$SIZE" \
+              --virtual-time-budget=18000 \
+              --screenshot="$NAME.png" \
+              --dump-dom "$URL" > "$NAME-dom.html"
+          }
+          capture reference-desktop "$REF" "1440,900"
+          capture candidate-desktop "$CAND" "1440,900"
+          capture reference-mobile "$REF" "390,844"
+          capture candidate-mobile "$CAND" "390,844"
+          for f in *.png; do echo "$f $(wc -c < "$f") bytes"; test "$(wc -c < "$f")" -gt 5000; done
+      - name: Upload comparison evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: earth-reference-comparison
+          path: |
+            reference-desktop.png
+            candidate-desktop.png
+            reference-mobile.png
+            candidate-mobile.png
+            reference-desktop-dom.html
+            candidate-desktop-dom.html
+            reference-mobile-dom.html
+            candidate-mobile-dom.html
