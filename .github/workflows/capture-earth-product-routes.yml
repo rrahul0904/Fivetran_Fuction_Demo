@@ -1,0 +1,45 @@
+name: Capture EARTH product routes
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+      - name: Capture all reference routes
+        shell: bash
+        run: |
+          set -euxo pipefail
+          capture () {
+            NAME="$1"; URL="$2"; SIZE="$3"
+            timeout 70s google-chrome \
+              --headless=new --no-sandbox --disable-dev-shm-usage \
+              --enable-unsafe-swiftshader --use-angle=swiftshader --ignore-gpu-blocklist \
+              --window-size="$SIZE" --virtual-time-budget=14000 \
+              --screenshot="$NAME.png" --dump-dom "$URL" > "$NAME-dom.html"
+          }
+          for spec in \
+            "planet|https://earth.ethanplus.ai/" \
+            "civilization|https://earth.ethanplus.ai/civilization.html" \
+            "orbit|https://earth.ethanplus.ai/orbit.html" \
+            "moon|https://earth.ethanplus.ai/moon.html" \
+            "earthquakes|https://earth.ethanplus.ai/restless.html" \
+            "oceans|https://earth.ethanplus.ai/oceans.html"; do
+              IFS='|' read -r NAME URL <<< "$spec"
+              capture "$NAME-desktop" "$URL" "1440,900"
+              capture "$NAME-mobile" "$URL" "390,844"
+          done
+          for f in *-desktop.png *-mobile.png; do test "$(wc -c < "$f")" -gt 5000; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: earth-product-routes
+          path: |
+            *-desktop.png
+            *-mobile.png
+            *-dom.html
