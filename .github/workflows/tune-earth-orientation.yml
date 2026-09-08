@@ -13,7 +13,7 @@ jobs:
         with:
           chrome-version: stable
       - run: python -m pip install --quiet selenium
-      - name: Capture yaw sweep
+      - name: Capture pitch sweep
         shell: bash
         run: |
           cat > /tmp/tune.py <<'PY'
@@ -33,14 +33,14 @@ jobs:
           const mul=(a,b)=>{const [ax,ay,az,aw]=a,[bx,by,bz,bw]=b;const q=[aw*bx+ax*bw+ay*bz-az*by,aw*by-ax*bz+ay*bw+az*bx,aw*bz+ax*by-ay*bx+az*bw,aw*bw-ax*bx-ay*by-az*bz];const l=Math.hypot(...q)||1;return q.map(v=>v/l)};
           g.quat=mul(axis(1,0,0,pitch),axis(0,1,0,yaw));g.focusTarget=null;g.focusFrom=null;g.requestDraw();
           """
-          for yaw in [-180,-135,-90,-45,0,45,90,135,180]:
-              d.execute_script(script,yaw,-12)
+          for pitch in [-20,-5,10,25]:
+              d.execute_script(script,-150,pitch)
               time.sleep(1.2)
-              d.save_screenshot(f'yaw-{yaw:+04d}.png')
+              d.save_screenshot(f'pitch-{pitch:+03d}.png')
           d.quit()
           PY
           CHROME_BIN="$(which chrome || which google-chrome || which chromium || true)" python /tmp/tune.py
       - uses: actions/upload-artifact@v4
         with:
           name: earth-orientation-variants
-          path: 'yaw-*.png'
+          path: 'pitch-*.png'
