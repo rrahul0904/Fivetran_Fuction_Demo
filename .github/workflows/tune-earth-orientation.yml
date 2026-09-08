@@ -13,7 +13,7 @@ jobs:
         with:
           chrome-version: stable
       - run: python -m pip install --quiet selenium
-      - name: Capture longitude sweep
+      - name: Capture yaw sweep
         shell: bash
         run: |
           cat > /tmp/tune.py <<'PY'
@@ -26,15 +26,21 @@ jobs:
           for a in ['--headless=new','--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist']:o.add_argument(a)
           d=webdriver.Chrome(options=o);d.set_window_size(1440,900);d.get(URL)
           WebDriverWait(d,30).until(lambda x:x.execute_script("return !!window.__EARTH_APP__?.globe?.ready"))
-          time.sleep(1.5)
-          for lon in [-160,-120,-80,-40,0,40,80,120,160]:
-              d.execute_script("window.__EARTH_APP__.globe.focus(17,arguments[0]);",lon)
-              time.sleep(1.8)
-              d.save_screenshot(f'lon-{lon:+04d}.png')
+          time.sleep(1.2)
+          script=r"""
+          const yaw=arguments[0]*Math.PI/180,pitch=arguments[1]*Math.PI/180,g=window.__EARTH_APP__.globe;
+          const axis=(ax,ay,az,a)=>{const l=Math.hypot(ax,ay,az)||1,s=Math.sin(a/2);return [ax/l*s,ay/l*s,az/l*s,Math.cos(a/2)]};
+          const mul=(a,b)=>{const [ax,ay,az,aw]=a,[bx,by,bz,bw]=b;const q=[aw*bx+ax*bw+ay*bz-az*by,aw*by-ax*bz+ay*bw+az*bx,aw*bz+ax*by-ay*bx+az*bw,aw*bw-ax*bx-ay*by-az*bz];const l=Math.hypot(...q)||1;return q.map(v=>v/l)};
+          g.quat=mul(axis(1,0,0,pitch),axis(0,1,0,yaw));g.focusTarget=null;g.focusFrom=null;g.requestDraw();
+          """
+          for yaw in [-180,-135,-90,-45,0,45,90,135,180]:
+              d.execute_script(script,yaw,-12)
+              time.sleep(1.2)
+              d.save_screenshot(f'yaw-{yaw:+04d}.png')
           d.quit()
           PY
           CHROME_BIN="$(which chrome || which google-chrome || which chromium || true)" python /tmp/tune.py
       - uses: actions/upload-artifact@v4
         with:
           name: earth-orientation-variants
-          path: 'lon-*.png'
+          path: 'yaw-*.png'
