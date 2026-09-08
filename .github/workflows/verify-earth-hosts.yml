@@ -1,0 +1,49 @@
+name: Verify EARTH alternate hosts
+on:
+  push:
+    branches:
+      - earth-static-preview-20260908
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify GitHub raw artifact
+        shell: bash
+        run: |
+          set -euxo pipefail
+          RAW="https://raw.githubusercontent.com/rrahul0904/Fivetran_Fuction_Demo/cbbdcb478c5237e852845ce6b65d14d7f660af3a/index.html"
+          CODE=$(curl -sS -o earth.html -w '%{http_code}' "$RAW")
+          TYPE=$(curl -sSI "$RAW" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type"{print $2;exit}')
+          BYTES=$(wc -c < earth.html)
+          echo "RAW_STATUS=$CODE"
+          echo "RAW_TYPE=$TYPE"
+          echo "RAW_BYTES=$BYTES"
+          test "$CODE" = "200"
+          test "$BYTES" -gt 100000
+          grep -q 'v11-git-static' earth.html
+          grep -q 'EARTH — The making of home' earth.html
+          ! grep -q 'Welcome to nginx' earth.html
+      - name: Probe static render hosts
+        shell: bash
+        run: |
+          set -euxo pipefail
+          DEV="https://raw.githack.com/rrahul0904/Fivetran_Fuction_Demo/cbbdcb478c5237e852845ce6b65d14d7f660af3a/index.html"
+          PREVIEW="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/cbbdcb478c5237e852845ce6b65d14d7f660af3a/index.html"
+          for URL in "$DEV" "$PREVIEW"; do
+            echo "PROBING=$URL"
+            curl -sSIL -o /tmp/h -w 'STATUS=%{http_code}\nTYPE=%{content_type}\nFINAL=%{url_effective}\n' "$URL" || true
+            head -30 /tmp/h || true
+          done
+      - name: Verify Earth texture CDN
+        shell: bash
+        run: |
+          set -euxo pipefail
+          for n in 93 57 49 16 1; do
+            URL="https://earth-paleo-assets-staging.vercel.app/paleo/$n.jpg"
+            CODE=$(curl -sS -o "/tmp/$n.jpg" -w '%{http_code}' "$URL")
+            echo "PALEO_$n=$CODE bytes=$(wc -c < /tmp/$n.jpg)"
+            test "$CODE" = "200"
+            test "$(wc -c < /tmp/$n.jpg)" -gt 1000
+          done
