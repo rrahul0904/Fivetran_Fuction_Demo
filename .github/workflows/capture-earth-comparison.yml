@@ -18,7 +18,7 @@ jobs:
         run: |
           set -euxo pipefail
           REF="https://earth.ethanplus.ai/"
-          CAND="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/earth-static-preview-20260908/index.html"
+          CAND="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/${GITHUB_SHA}/index.html"
           capture () {
             NAME="$1"; URL="$2"; SIZE="$3"
             timeout 75s google-chrome \
