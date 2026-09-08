@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          URL="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/cbbdcb478c5237e852845ce6b65d14d7f660af3a/index.html"
+          URL="https://htmlpreview.github.io/?https://github.com/rrahul0904/Fivetran_Fuction_Demo/blob/earth-static-preview-20260908/index.html"
           google-chrome --version
           timeout 60s google-chrome \
             --headless=new \
